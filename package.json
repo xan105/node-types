@@ -1,0 +1,65 @@
+{
+  "name": "@xan105/types",
+  "version": "0.0.0",
+  "description": "Type checking and asserting at runtime",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "default": "./lib/index.js"
+    }
+  },
+  "browser": "./dist/types.min.js",
+  "files": [
+    "/dist",
+    "/lib",
+    "/types"
+  ],
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "scripts": {
+    "lint": "biome lint",
+    "test": "node --test",
+    "declare": "tsc --emitDeclarationOnly",
+    "bundle": "npm run-script bundle:pretty && npm run-script bundle:min",
+    "bundle:pretty": "esbuild \"./lib/index.js\" --bundle --legal-comments=none --platform=browser --target=esnext --format=esm --outfile=\"./dist/types.js\"",
+    "bundle:min": "esbuild \"./lib/index.js\" --bundle --minify --legal-comments=none --platform=browser --target=esnext --format=esm --outfile=\"./dist/types.min.js\""
+  },
+  "keywords": [
+    "types",
+    "check",
+    "runtime",
+    "typestring"
+  ],
+  "author": {
+    "name": "Anthony Beaumont",
+    "email": "dev.xan105@outlook.be",
+    "url": "https://xan105.com/"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xan105/node-types.git"
+  },
+  "bugs": {
+    "url": "https://github.com/xan105/node-types/issues"
+  },
+  "homepage": "https://github.com/xan105/node-types#readme",
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/xan105"
+    },
+    {
+      "type": "paypal",
+      "url": "https://www.paypal.me/xan105"
+    }
+  ],
+  "devDependencies": {
+    "@biomejs/biome": "^2.2.4",
+    "@types/node": "^24.5.2",
+    "esbuild": "^0.25.10",
+    "typescript": "^5.9.2"
+  }
+}
