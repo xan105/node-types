@@ -145,6 +145,14 @@ API
 - `array`
 - `arr`
 
+You can add the suffix `[]` for an array, and add a number for fixed length array.
+
+Example:
+
+```js
+is("string[2]", ["foo", "bar"]); //true
+```
+
 </details>
 
 ### - Primitive

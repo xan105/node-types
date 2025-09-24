@@ -24,6 +24,9 @@ test("is() - array types", () => {
   assert.ok(!is("string[]", ["a", 1, "b"]));
   assert.ok(is("number[]", [1, 2, 3]));
   assert.ok(!is("number[]", [1, "2", 3]));
+  // fixed length
+  assert.ok(is("string[2]", ["a", "b"]));
+  assert.ok(!is("string[1]", ["a", "b"]));
 });
 
 test("as() - scalar types", () => {
@@ -37,6 +40,9 @@ test("as() - array types", () => {
   const arr = ["x", "y"];
   assert.deepEqual(as("string[]", arr), arr);
   assert.equal(as("string[]", ["x", 2]), null);
+  // fixed length
+  assert.deepEqual(as("string[2]", arr), arr);
+  assert.equal(as("string[1]", arr), null);
 });
 
 test("should() - scalar types", () => {
@@ -50,6 +56,9 @@ test("should() - array types", () => {
   const arr = ["a","b"];
   assert.equal(should("string[]", arr), arr);
   assert.throws(() => should("string[]", ["a", 1]), TypeError);
+  // fixed length
+  assert.equal(should("string[2]", arr), arr);
+  assert.throws(() => should("string[1]", arr), TypeError);
 });
 
 test("edge cases - case insensitive aliases", () => {
