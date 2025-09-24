@@ -45,7 +45,7 @@ const foo = should("string", "bar");
 
 ### Coerce value
 
-> Return the given value when the condition is true otherwise null._
+> Return the given value when the condition is true otherwise null.
 
 ```js
 import { asString } from "@xan105/types";
@@ -106,13 +106,13 @@ API
 
 ## Named export
 
-### "Type string" matching
+### "- Type string" matching
 
 #### `is(typeString: string, value: unknown): boolean`
 #### `as(typeString: string, value: unknown): unknown|null`
 #### `should(typeString: string, value: unknown): unknown`
 
-<details><summary>List of supported _"type string"_:</summary>
+<details><summary>List of supported "type string":</summary>
 
 - `string`
 - `str`
@@ -147,7 +147,7 @@ API
 
 </details>
 
-### Primitive
+### - Primitive
 
 #### `isBigInt(value: unknown): boolean`
 #### `asBigInt(value: unknown): bigint|null`
@@ -160,17 +160,12 @@ API
 #### `isNull(value: unknown): boolean`
 #### `shouldNull(value: unknown): null`
 #### `isUndefined(value: unknown): boolean`
-
-    _alias: isVoid()_
-    
+  alias: isVoid()
 #### `shouldUndefined(value: unknown): undefined`
-
-    _alias: shouldVoid()_
-    
+  alias: shouldVoid()
 #### `isNullish(value: unknown): boolean`
 #### `shouldNullish(value: unknown): null|undefined`
-
-    _"Nullish"_: null or undefined
+  "Nullish": null or undefined
 
 #### `isNumber(value: unknown): boolean`
 #### `asNumber(value: unknown): number|null`
@@ -187,7 +182,7 @@ API
 #### `asSymbol(value: unknown): symbol|null`
 #### `shouldSymbol(value: unknown): symbol`
 
-### Object
+### - Object
 
 #### `isArray(value: unknown): boolean`
 #### `asArray(value: unknown): unknown[]|null`
@@ -211,17 +206,11 @@ API
 #### `shouldGenerator(value: unknown): function*`
 
 #### `isPlainObject(value: unknown): boolean`
-
-    _alias: isObject()_
-    
+  alias: isObject()
 #### `asPlainObject(value: unknown): object|null`
-
-    _alias: asObject()_
-    
+  alias: asObject()
 #### `shouldPlainObject(value: unknown): object`
-
-    _alias: shouldObject()_
-    
+  alias: shouldObject()
 #### `isError(value: unknown): boolean`
 #### `asError(value: unknown): Error|null` 
 #### `shouldError(value: unknown): Error` 
@@ -232,7 +221,7 @@ API
 #### `asMap(value: unknown): Map|null`
 #### `shouldMap(value: unknown): Map`
 
-### Extended
+### - Extended
 
 #### `isArrayOf(fn: function, values: unknown[], ...args): boolean`
 #### `asArrayOf(fn: function, values: unknown[], ...args): unknown[]|null`
@@ -262,7 +251,7 @@ API
 #### `asNonEmptyString(value: unknown): string|null`
 #### `shouldNonEmptyString(value: unknown): string`
 
-### Util
+### - Util
 
 #### `enumFrom(values: { key: string, value: number, ... }): object`
 
