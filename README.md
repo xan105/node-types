@@ -18,7 +18,7 @@ import { isString } from "@xan105/types";
 isString("foo") //true
 ```
 
-With a _"type string"_ approach:
+Using _"type string"_:
 
 ```js
 import { is } from "@xan105/types";
@@ -29,7 +29,7 @@ is("function*", function*()=>{ yield "a" }); //true
 
 ### Assertion
 
-_Return the given value when the condition is true otherwise throw a Type Error._
+> Return the given value when the condition is true otherwise throw a Type Error.
 
 ```js
 import { shouldString } from "@xan105/types";
@@ -45,7 +45,7 @@ const foo = should("string", "bar");
 
 ### Coerce value
 
-_Return the given value when the condition is true otherwise null._
+> Return the given value when the condition is true otherwise null._
 
 ```js
 import { asString } from "@xan105/types";
@@ -76,7 +76,7 @@ Install
 npm install @xan105/types
 ```
 
-## Web
+## 🌐 Web
 
 💡 The bundled library and its minified version can be found in the `./dist` folder.
 
@@ -93,7 +93,7 @@ npm install @xan105/types
     }
     </script>
     <script type="module">
-    import { isString } from "@xan105/types"
+      import { isString } from "@xan105/types"
     </script>
     </body>
   </html>
@@ -106,11 +106,11 @@ API
 
 ## Named export
 
-**"Type string" matching**
+### "Type string" matching
 
-### `is(typeString: string, value: unknown): boolean`
-### `as(typeString: string, value: unknown): unknown|null`
-### `should(typeString: string, value: unknown): unknown`
+#### `is(typeString: string, value: unknown): boolean`
+#### `as(typeString: string, value: unknown): unknown|null`
+#### `should(typeString: string, value: unknown): unknown`
 
 <details><summary>List of supported _"type string"_:</summary>
 
@@ -147,113 +147,124 @@ API
 
 </details>
 
-**Primitive**
+### Primitive
 
-### `isBigInt(value: unknown): boolean`
-### `asBigInt(value: unknown): bigint|null`
-### `shouldBigInt(value: unknown): bigint`
+#### `isBigInt(value: unknown): boolean`
+#### `asBigInt(value: unknown): bigint|null`
+#### `shouldBigInt(value: unknown): bigint`
 
-### `isBoolean(value: unknown): boolean`
-### `asBoolean(value: unknown): boolean|null`
-### `shouldBoolean(value: unknown): boolean`
+#### `isBoolean(value: unknown): boolean`
+#### `asBoolean(value: unknown): boolean|null`
+#### `shouldBoolean(value: unknown): boolean`
 
-### `isNull(value: unknown): boolean`
-### `shouldNull(value: unknown): null`
-### `isUndefined(value: unknown): boolean`
+#### `isNull(value: unknown): boolean`
+#### `shouldNull(value: unknown): null`
+#### `isUndefined(value: unknown): boolean`
+
     _alias: isVoid()_
-### `shouldUndefined(value: unknown): undefined`
+    
+#### `shouldUndefined(value: unknown): undefined`
+
     _alias: shouldVoid()_
-### `isNullish(value: unknown): boolean`
-### `shouldNullish(value: unknown): null|undefined`
+    
+#### `isNullish(value: unknown): boolean`
+#### `shouldNullish(value: unknown): null|undefined`
+
     _"Nullish"_: null or undefined
 
-### `isNumber(value: unknown): boolean`
-### `asNumber(value: unknown): number|null`
-### `shouldNumber(value: unknown): number`
-### `isInt(value: unknown): boolean`
-### `asInt(value: unknown): number|null`
-### `shouldInt(value: unknown): number`
+#### `isNumber(value: unknown): boolean`
+#### `asNumber(value: unknown): number|null`
+#### `shouldNumber(value: unknown): number`
+#### `isInt(value: unknown): boolean`
+#### `asInt(value: unknown): number|null`
+#### `shouldInt(value: unknown): number`
 
-### `isString(value: unknown): boolean`
-### `asString(value: unknown): string|null`
-### `shouldString(value: unknown): string`
+#### `isString(value: unknown): boolean`
+#### `asString(value: unknown): string|null`
+#### `shouldString(value: unknown): string`
 
-### `isSymbol(value: unknown): boolean`
-### `asSymbol(value: unknown): symbol|null`
-### `shouldSymbol(value: unknown): symbol`
+#### `isSymbol(value: unknown): boolean`
+#### `asSymbol(value: unknown): symbol|null`
+#### `shouldSymbol(value: unknown): symbol`
 
-**Object**
+### Object
 
-### `isArray(value: unknown): boolean`
-### `asArray(value: unknown): unknown[]|null`
-### `shouldArray(value: unknown): unknown[]`
-### `isSet(value: unknown): boolean`
-### `asSet(value: unknown): Set|null`
-### `shouldSet(value: unknown): Set`
+#### `isArray(value: unknown): boolean`
+#### `asArray(value: unknown): unknown[]|null`
+#### `shouldArray(value: unknown): unknown[]`
+#### `isSet(value: unknown): boolean`
+#### `asSet(value: unknown): Set|null`
+#### `shouldSet(value: unknown): Set`
 
-### `isBuffer(value: unknown): boolean`
-### `asBuffer(value: unknown): Uint8Array|null`
-### `shouldBuffer(value: unknown): Uint8Array`
+#### `isBuffer(value: unknown): boolean`
+#### `asBuffer(value: unknown): Uint8Array|null`
+#### `shouldBuffer(value: unknown): Uint8Array`
 
-### `isFunction(value: unknown): boolean`
-### `asFunction(value: unknown): function|null`
-### `shouldFunction(value: unknown): function`
-### `isPromise(value: unknown): boolean`
-### `asPromise(value: unknown): Promise<unknown>|null`
-### `shouldPromise(value: unknown): Promise<unknown>`
-### `isGenerator(value: unknown): boolean`
-### `asGenerator(value: unknown): function*|null`
-### `shouldGenerator(value: unknown): function*`
+#### `isFunction(value: unknown): boolean`
+#### `asFunction(value: unknown): function|null`
+#### `shouldFunction(value: unknown): function`
+#### `isPromise(value: unknown): boolean`
+#### `asPromise(value: unknown): Promise<unknown>|null`
+#### `shouldPromise(value: unknown): Promise<unknown>`
+#### `isGenerator(value: unknown): boolean`
+#### `asGenerator(value: unknown): function*|null`
+#### `shouldGenerator(value: unknown): function*`
 
-### `isPlainObject(value: unknown): boolean`
+#### `isPlainObject(value: unknown): boolean`
+
     _alias: isObject()_
-### `asPlainObject(value: unknown): object|null`
+    
+#### `asPlainObject(value: unknown): object|null`
+
     _alias: asObject()_
-### `shouldPlainObject(value: unknown): object`
+    
+#### `shouldPlainObject(value: unknown): object`
+
     _alias: shouldObject()_
-### `isError(value: unknown): boolean`
-### `asError(value: unknown): Error|null` 
-### `shouldError(value: unknown): Error` 
-### `isRegExp(value: unknown): boolean`
-### `asRegExp(value: unknown): RegExp|null`
-### `shouldRegExp(value: unknown): RegExp`
-### `isMap(value: unknown): boolean`
-### `asMap(value: unknown): Map|null`
-### `shouldMap(value: unknown): Map`
+    
+#### `isError(value: unknown): boolean`
+#### `asError(value: unknown): Error|null` 
+#### `shouldError(value: unknown): Error` 
+#### `isRegExp(value: unknown): boolean`
+#### `asRegExp(value: unknown): RegExp|null`
+#### `shouldRegExp(value: unknown): RegExp`
+#### `isMap(value: unknown): boolean`
+#### `asMap(value: unknown): Map|null`
+#### `shouldMap(value: unknown): Map`
 
-**Extended**
+### Extended
 
-### `isArrayOf(fn: function, values: unknown[], ...args): boolean`
-### `asArrayOf(fn: function, values: unknown[], ...args): unknown[]|null`
-### `shouldArrayOf(fn: function, values: unknown[], ...args): unknown[]`
+#### `isArrayOf(fn: function, values: unknown[], ...args): boolean`
+#### `asArrayOf(fn: function, values: unknown[], ...args): unknown[]|null`
+#### `shouldArrayOf(fn: function, values: unknown[], ...args): unknown[]`
 
-### `isBigIntWithinRange(value: unknown, min: bigint, max: bigint): boolean`
-### `asBigIntWithinRange(value: unknown, min: bigint, max: bigint): bigint|null`
-### `shouldBigIntWithinRange(value: unknown, min: bigint, max: bigint): bigint`
-### `isBigUint(value: unknown): boolean`
-### `asBigUint(value: unknown): bigint|null`
-### `shouldBigUint(value: unknown): bigint`
+#### `isBigIntWithinRange(value: unknown, min: bigint, max: bigint): boolean`
+#### `asBigIntWithinRange(value: unknown, min: bigint, max: bigint): bigint|null`
+#### `shouldBigIntWithinRange(value: unknown, min: bigint, max: bigint): bigint`
+#### `isBigUint(value: unknown): boolean`
+#### `asBigUint(value: unknown): bigint|null`
+#### `shouldBigUint(value: unknown): bigint`
 
-### `isNumberWithinRange(value: unknown, min: number, max: number): boolean`
-### `asNumberWithinRange(value: unknown, min: number, max: number): number|null`
-### `shouldNumberWithinRange(value: unknown, min: number, max: number): number`
-### `isIntWithinRange(value: unknown, min: number, max: number): boolean`
-### `asIntWithinRange(value: unknown, min: number, max: number): number|null`
-### `shouldIntWithinRange(value: unknown, min: number, max: number): number`
-### `isUint(value: unknown): boolean`
-### `asUint(value: unknown): number|null`
-### `shouldUint(value: unknown): number`
+#### `isNumberWithinRange(value: unknown, min: number, max: number): boolean`
+#### `asNumberWithinRange(value: unknown, min: number, max: number): number|null`
+#### `shouldNumberWithinRange(value: unknown, min: number, max: number): number`
+#### `isIntWithinRange(value: unknown, min: number, max: number): boolean`
+#### `asIntWithinRange(value: unknown, min: number, max: number): number|null`
+#### `shouldIntWithinRange(value: unknown, min: number, max: number): number`
+#### `isUint(value: unknown): boolean`
+#### `asUint(value: unknown): number|null`
+#### `shouldUint(value: unknown): number`
 
-### `isStringLike(value: unknown, pattern: string | RegExp): boolean`
-### `asStringLike(value: unknown, pattern: string | RegExp): string|null`
-### `shouldStringLike(value: unknown, pattern: string | RegExp): string`
-### `isNonEmptyString(value: unknown): boolean`
-### `asNonEmptyString(value: unknown): string|null`
-### `shouldNonEmptyString(value: unknown): string`
+#### `isStringLike(value: unknown, pattern: string | RegExp): boolean`
+#### `asStringLike(value: unknown, pattern: string | RegExp): string|null`
+#### `shouldStringLike(value: unknown, pattern: string | RegExp): string`
+#### `isNonEmptyString(value: unknown): boolean`
+#### `asNonEmptyString(value: unknown): string|null`
+#### `shouldNonEmptyString(value: unknown): string`
 
-**Util**
+### Util
 
-### `enumFrom(values: { key: string, value: number, ... }): object`
+#### `enumFrom(values: { key: string, value: number, ... }): object`
 
 Creates a frozen, _bidirectional_ numeric enum object, similar to TypeScript's `enum`.
 
