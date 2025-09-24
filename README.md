@@ -106,7 +106,7 @@ API
 
 ## Named export
 
-### "- Type string" matching
+### - "Type string" matching
 
 #### `is(typeString: string, value: unknown): boolean`
 #### `as(typeString: string, value: unknown): unknown|null`
