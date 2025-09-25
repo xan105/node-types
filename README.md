@@ -231,9 +231,9 @@ is("string[2]", ["foo", "bar"]); //true
 
 ### - Extended
 
-#### `isArrayOf(fn: function, values: unknown[], ...args): boolean`
-#### `asArrayOf(fn: function, values: unknown[], ...args): unknown[]|null`
-#### `shouldArrayOf(fn: function, values: unknown[], ...args): unknown[]`
+#### `isArrayOf(fn: function, values: unknown[], option?: { args?: unknown[], length?: number } | unknown[]): boolean`
+#### `asArrayOf(fn: function, values: unknown[], option?: { args?: unknown[], length?: number } | unknown[]): unknown[]|null`
+#### `shouldArrayOf(fn: function, values: unknown[], option?: { args?: unknown[], length?: number } | unknown[]): unknown[]`
 
 #### `isBigIntWithinRange(value: unknown, min: bigint, max: bigint): boolean`
 #### `asBigIntWithinRange(value: unknown, min: bigint, max: bigint): bigint|null`
