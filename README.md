@@ -235,6 +235,8 @@ is("string[2]", ["foo", "bar"]); //true
 #### `asArrayOf(fn: function, values: unknown[], option?: { args?: unknown[], length?: number } | unknown[]): unknown[]|null`
 #### `shouldArrayOf(fn: function, values: unknown[], option?: { args?: unknown[], length?: number } | unknown[]): unknown[]`
 
+_If `option` is an array then `args` is assumed._
+
 #### `isBigIntWithinRange(value: unknown, min: bigint, max: bigint): boolean`
 #### `asBigIntWithinRange(value: unknown, min: bigint, max: bigint): bigint|null`
 #### `shouldBigIntWithinRange(value: unknown, min: bigint, max: bigint): bigint`
