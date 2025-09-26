@@ -208,54 +208,6 @@ function shouldMap(value) {
   return assert(isMap, value);
 }
 
-// lib/types/extended/array.js
-function isArrayOf(fn, values, ...args) {
-  shouldFunction(fn);
-  return isArray(values) && values.filter((value) => fn(value, ...args)).length === values.length;
-}
-function asArrayOf(fn, values, ...args) {
-  return isArrayOf(fn, values, ...args) ? values : null;
-}
-function shouldArrayOf(fn, values, ...args) {
-  shouldFunction(fn);
-  shouldArray(values);
-  for (const [index, value] of values.entries()) {
-    try {
-      assert(fn, value, ...args);
-    } catch (err) {
-      err.message = err.message.replace(/\" !$/, '[]" !');
-      err.details = {
-        at: index,
-        ...err.details
-      };
-      throw err;
-    }
-  }
-  return values;
-}
-
-// lib/types/extended/bigint.js
-function isBigIntWithinRange(value, min, max) {
-  shouldBigInt(min);
-  shouldBigInt(max);
-  return isBigInt(value) && value >= min && value <= max;
-}
-function asBigIntWithinRange(value, min, max) {
-  return isBigIntWithinRange(value, min, max) ? value : null;
-}
-function shouldBigIntWithinRange(value, min, max) {
-  return assert(isBigIntWithinRange, value, min, max);
-}
-function isBigUint(value) {
-  return isBigInt(value) && value >= 0n;
-}
-function asBigUint(value) {
-  return isBigUint(value) ? value : null;
-}
-function shouldBigUint(value) {
-  return assert(isBigUint, value);
-}
-
 // lib/types/extended/number.js
 function isNumberWithinRange(value, min, max) {
   shouldNumber(min);
@@ -287,6 +239,78 @@ function asUint(value) {
 }
 function shouldUint(value) {
   return assert(isUint, value);
+}
+
+// lib/types/extended/array.js
+function isArrayOf(fn, values, option = {}) {
+  shouldFunction(fn);
+  if (!isArray(values)) return false;
+  if (isArray(option)) option = { args: option };
+  const options = {
+    args: asArray(option.args) ?? [],
+    length: asUint(option.length) ?? values.length
+  };
+  if (values.length !== options.length) return false;
+  for (const value of values.values()) {
+    if (fn(value, ...options.args) === true) continue;
+    return false;
+  }
+  return true;
+}
+function asArrayOf(fn, values, option) {
+  return isArrayOf(fn, values, option) ? values : null;
+}
+function shouldArrayOf(fn, values, option = {}) {
+  shouldFunction(fn);
+  shouldArray(values);
+  if (isArray(option)) option = { args: option };
+  const options = {
+    args: asArray(option.args) ?? [],
+    length: asUint(option.length) ?? values.length
+  };
+  if (values.length !== options.length) {
+    const err = new TypeError("Fixed length array wrong size!");
+    err.details = {
+      actual: values.length,
+      expected: options.length
+    };
+    throw err;
+  }
+  for (const [index, value] of values.entries()) {
+    try {
+      assert(fn, value, ...options.args);
+    } catch (err) {
+      err.message = err.message.replace(/" !$/, '[]" !');
+      err.details = {
+        at: index,
+        ...err.details
+      };
+      throw err;
+    }
+  }
+  return values;
+}
+
+// lib/types/extended/bigint.js
+function isBigIntWithinRange(value, min, max) {
+  shouldBigInt(min);
+  shouldBigInt(max);
+  return isBigInt(value) && value >= min && value <= max;
+}
+function asBigIntWithinRange(value, min, max) {
+  return isBigIntWithinRange(value, min, max) ? value : null;
+}
+function shouldBigIntWithinRange(value, min, max) {
+  return assert(isBigIntWithinRange, value, min, max);
+}
+function isBigUint(value) {
+  return isBigInt(value) && value >= 0n;
+}
+function asBigUint(value) {
+  return isBigUint(value) ? value : null;
+}
+function shouldBigUint(value) {
+  return assert(isBigUint, value);
 }
 
 // lib/types/extended/string.js
@@ -332,23 +356,32 @@ function enumFrom(values) {
 // lib/match.js
 function parse(typeString) {
   shouldNonEmptyString(typeString);
-  const match = typeString.match(/(\w+\*?)(\[(\d)?\])?$/);
+  const match = typeString.match(/(\w+\*?)(\[(\d+)?\])?$/);
   if (isNull(match)) throw new Error(`Unable to parse: "${typeString}"`);
-  return match;
+  const [, type, array, length] = match;
+  return {
+    type: asString(type) ?? "",
+    array: Boolean(array),
+    length: +length
+  };
 }
 function is(typeString, value) {
-  const [, type, array, length] = parse(typeString);
+  const { type, array, length } = parse(typeString);
   const test = translate(type.toLowerCase());
-  if (array) return isArrayOf(test, value);
+  if (array) {
+    return isArrayOf(test, value, { length });
+  }
   return test(value);
 }
 function as(typeString, value) {
   return is(typeString, value) ? value : null;
 }
 function should(typeString, value) {
-  const [, type, array, length] = parse(typeString);
+  const { type, array, length } = parse(typeString);
   const test = translate(type.toLowerCase());
-  if (array) return shouldArrayOf(test, value);
+  if (array) {
+    return shouldArrayOf(test, value, { length });
+  }
   return assert(test, value);
 }
 function translate(type) {
