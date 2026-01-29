@@ -1,6 +1,6 @@
 {
   "name": "@xan105/types",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Type checking and asserting at runtime",
   "type": "module",
   "exports": {
@@ -17,7 +17,7 @@
     "/types"
   ],
   "engines": {
-    "node": ">=22.19.0"
+    "node": ">=24.13.0"
   },
   "scripts": {
     "lint": "biome lint",
@@ -47,7 +47,7 @@
   "bugs": {
     "url": "https://github.com/xan105/node-types/issues"
   },
-  "homepage": "https://github.com/xan105/node-types#readme",
+  "homepage": "https://github.com/xan105/node-types",
   "funding": [
     {
       "type": "github",

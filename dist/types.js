@@ -7,11 +7,12 @@ function assert(fn, value, ...args) {
     if (type === "object" && DANGEROUS_TAGS.includes(tag))
       throw new SyntaxError("new String|Boolean|Number() is confusing, dangerous, and wasteful. Avoid it.");
     const name = fn.name.replace(/(^is)|(Like$)/, "").toLowerCase();
-    const error = new TypeError(`Expected type "${name}" !`);
-    error.details = {
-      actual: { type, tag, value },
-      expected: name
-    };
+    const error = new TypeError(`Expected type "${name}" !`, {
+      cause: {
+        actual: { type, tag, value },
+        expected: name
+      }
+    });
     throw error;
   }
   return value;
@@ -181,7 +182,7 @@ function shouldPlainObject(value) {
   return assert(isPlainObject, value);
 }
 function isError(value) {
-  return Error.isError?.() ?? isTag(value, "Error");
+  return Error.isError(value);
 }
 function asError(value) {
   return isError(value) ? value : null;
@@ -269,21 +270,18 @@ function shouldArrayOf(fn, values, option = {}) {
     length: asUint(option.length) ?? values.length
   };
   if (values.length !== options.length) {
-    const err = new TypeError("Fixed length array wrong size!");
-    err.details = {
-      actual: values.length,
-      expected: options.length
-    };
-    throw err;
+    throw new TypeError("Fixed length array wrong size!", {
+      cause: { actual: values.length, expected: options.length }
+    });
   }
   for (const [index, value] of values.entries()) {
     try {
       assert(fn, value, ...options.args);
     } catch (err) {
       err.message = err.message.replace(/" !$/, '[]" !');
-      err.details = {
+      err.cause = {
         at: index,
-        ...err.details
+        ...err.cause
       };
       throw err;
     }
