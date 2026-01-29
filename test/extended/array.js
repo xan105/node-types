@@ -56,7 +56,7 @@ test("shouldArrayOf() - throws on first failure with correct index", () => {
     shouldArrayOf(isNumber, arr);
     assert.fail("Expected TypeError");
   } catch (err) {
-    assert.equal(err.details.at, 1); // second element fails
+    assert.equal(err.cause.at, 1); // second element fails
   }
 });
 
