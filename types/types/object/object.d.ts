@@ -8,6 +8,6 @@ export function isRegExp(value: unknown): boolean;
 export function asRegExp(value: unknown): RegExp | null;
 export function shouldRegExp(value: unknown): RegExp;
 export function isMap(value: unknown): boolean;
-export function asMap(value: unknown): Map | null;
-export function shouldMap(value: unknown): Map;
+export function asMap(value: unknown): Map<unknown, unknown> | null;
+export function shouldMap(value: unknown): Map<unknown, unknown>;
 export { isPlainObject as isObject, asPlainObject as asObject, shouldPlainObject as shouldObject };
